@@ -1,10 +1,10 @@
-import styles from './ui/home.module.css';
+import homeStyles from './ui/home.module.css';
 import { figtree } from './ui/fonts';
 import Image from 'next/image';
 
 export default function Home() {
-  return <div>
-    <div className={styles.shape}></div>
+  return <div className={homeStyles.container}>
+    <div className={homeStyles.shape}></div>
     <p className={figtree.className}>Test Text</p>
     <div className='flex items-center justify-center'>
       <Image
