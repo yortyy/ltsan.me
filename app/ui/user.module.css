@@ -7,6 +7,7 @@
   width: 100vw;
   position: absolute;
   background-color: #000000ce;
+  overflow: hidden;
 }
 
 .mainContent.gameOn {
@@ -50,6 +51,10 @@
   box-shadow: 5px 5px rgb(0, 0, 0);
   position: absolute;
   transition: transform 0.2s ease;
+  z-index: 5;
+  cursor: pointer;
+  top: calc(50% - var(--card-height) / 2);
+  left: calc(50% - var(--card-width) / 2);
 }
 
 .deckContainer:hover {
@@ -60,6 +65,11 @@
   color: white;
 }
 
+
+.deckContainer > h3, .deckContainer > span, .deckContainer > img {
+  pointer-events: none;
+}
+
 .deckLetter {
   margin: auto auto 6rem auto;
   font-size: 6rem;
@@ -67,25 +77,53 @@
 }
 
 .deckContainer.gameOn {
-  transition: transform 2s ease;
-  transform: translateX(38vw) translateY(13vw) scale(0.8);
+  transition: all 2s ease;
+  top: calc(74vh - var(--card-height) / 2);
+  left: calc(88vw - var(--card-width) / 2);
+  transform: scale(0.8);
 }
 
 .handContainer {
-  display: flex;
   gap: 1rem;
-  position: absolute;
   bottom: 2rem;
-  width: 100vw;
-  padding: 0 300px 0 2rem;
+  padding: 0 0 0 2rem;
+  opacity: 0;
+  width: calc(100vw - var(--card-width));
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  transition: opacity 3s ease, transform 3s ease;
+  transform: translateY(300px);
+}
+
+.handContainer.gameOn {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .cardContainer {
-  height: var(--card-height)  * 0.6;
-  width: var(--card-width) * 0.6;
-  transition: transform 0.2s ease;
+  height: calc(var(--card-height) * 0.6);
+  width: calc(var(--card-width) * 0.6);
+  transition: top 2s ease, left 2s ease, transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .cardContainer:hover {
-  transform: scale(0.97);
+  transform: translateY(-10px) scale(0.98);
+}
+
+
+.cardContainer.frontEnd {
+  background-color: #E29191;
+}
+.cardContainer.backEnd {
+  background-color: #91BEE2;
+}
+.cardContainer.fullStack {
+  background-color: #919de2;
 }

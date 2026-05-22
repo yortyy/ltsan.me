@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 type DeckProps = {
   username: string;
-  image: string;
+  image: string | null;
   setGameOn: (gameOn: boolean) => void;
   gameOn: boolean;
   drawCard: () => void;
@@ -29,6 +29,6 @@ export default function Deck({ username, image, setGameOn, gameOn, drawCard }: D
 
   return <div className={clsx(userStyles.deckContainer, { [userStyles.gameOn]: gameOn })} onClick={handleDeckClick}>
     <h3 className={clsx(figtree.className)}>{username}'s Deck</h3>
-    {image ? <img src={image} alt={`${username}'s deck image`} className={userStyles.deckImage} /> : <p className={userStyles.deckLetter}>{firstLetter}</p>}
+    {image ? <img src={image} alt={`${username}'s deck image`} className={userStyles.deckImage} /> : <span className={userStyles.deckLetter}>{firstLetter}</span>}
   </div>;
 }
