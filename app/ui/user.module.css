@@ -20,9 +20,10 @@
   max-height: 500px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
   font-size: 3rem;
+  padding-right: 5.5rem;
 }
 
 .userTitle > div {
@@ -86,7 +87,7 @@
 .handContainer {
   gap: 1rem;
   bottom: 2rem;
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 1rem;
   opacity: 0;
   width: calc(100vw - var(--card-width));
   position: absolute;
@@ -107,23 +108,63 @@
   height: calc(var(--card-height) * 0.6);
   width: calc(var(--card-width) * 0.6);
   transition: top 2s ease, left 2s ease, transform 0.25s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  perspective: 1000px;
+  cursor: pointer;
 }
 
 .cardContainer:hover {
   transform: translateY(-10px) scale(0.98);
 }
 
+.cardContainer.chosen {
+  z-index: 10;
+  position: absolute;
+  top: calc(50% - var(--card-height) / 2 * 0.6 * 2);
+  left: calc(50% - var(--card-width) / 2 * 0.6);
+  transform: scale(1.5);
+}
 
-.cardContainer.frontEnd {
+.card {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease, flex 0.3s ease;;
+  transform-style: preserve-3d;
+  border-radius: 5px;
+}
+
+.cardContainer:hover .card, .cardContainer.chosen .card {
+  transform: rotateY(180deg);
+}
+
+.cardContainer.chosen .card.chosenClicked {
+  transform: rotateY(0);
+}
+
+.cardFront, .cardBack {
+  width: 100%;
+  height: 100%;
+  padding: 1rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.cardFront {
+  transform: rotateY(0)
+}
+.cardBack {
+  transform: rotateY(180deg);
+}
+
+.card.frontEnd {
   background-color: #E29191;
 }
-.cardContainer.backEnd {
+.card.backEnd {
   background-color: #91BEE2;
 }
-.cardContainer.fullStack {
+.card.fullStack {
   background-color: #919de2;
 }

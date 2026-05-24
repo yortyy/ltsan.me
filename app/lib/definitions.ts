@@ -1,6 +1,7 @@
 export type Card = {
   id: string;
   name: string;
+  colors: string[];
   desc: string;
   frameworks: string[];
   platforms: string[];
