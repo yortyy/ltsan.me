@@ -44,8 +44,18 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
       </div>
       <div className={userStyles.cardFront}>
         <h3 className={clsx(figtree.className)}>{cardData["name"]}</h3>
-        <span className={clsx(figtree.className)}>{cardData["type"]}</span>
-        {cardData["frameworks"].map((name, index) => ( <p key={index} className={clsx(figtree.className)}>{name}</p> ))}
+        <h4 className={clsx(figtree.className)}>{cardData["type"]}</h4>
+        {cardData["mainTech"].map((name, index) => (
+          <div key={index} className={userStyles.mainTech} >
+            <Image src={`/images/logos/${name}-logo.png`}
+              width={512}
+              height={512}
+              className={userStyles.mainTechLogo}
+              alt={`Logo of ${name}`}
+            />
+            <span className={clsx(figtree.className)}>{name}</span></div>
+        ))}
+        <span className={clsx(figtree.className)}>{cardData["dates"]["start"].toLocaleString('default', { month: 'short'})}</span>
       </div>
     </div>
   </div>;

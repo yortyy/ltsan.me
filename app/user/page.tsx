@@ -22,14 +22,19 @@ export default function Page() {
   const [chosenCard, setChosenCard] = useState<CardType | null>(null);
 
   function drawCard() {
-    const newCard:CardType = { 
-      id: "" + (cards.length + 1 + (chosenCard ? 1 : 0)), 
-      type: `Front-end`, 
-      colors: ["white"], 
-      name: 'New Project', 
-      desc: 'A new project', 
-      frameworks: ['React'], 
-      platforms: ['Web'] };
+    const newCard:CardType = {
+        id: "" + cards.length + 1,
+        type: 'Full-stack',
+        colors: ['#57007F'],
+        name: 'DubCards (Fake)',
+        desc: 'DubCards is a University of Washington themed trading card game featuring UW themed cards and packs. Cards can be bought, sold or favorited. Users can add friends to trade cards wish. Enjoy DubCards with many cards and packs to choose from!',
+        mainTech: ['Express', 'HTML', 'MongoDB', 'Azure'],
+        sideTech: ['CSS'],
+        dates: {
+          start: new Date('2026-1-01'),
+          end: null,
+        },
+      };
     setCards([...cards, newCard]);
   }
   
