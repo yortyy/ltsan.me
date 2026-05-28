@@ -1,3 +1,11 @@
+@import "material-symbols";
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+}
+
+
+
 .mainContent {
   display: flex;
   flex-direction: column;
@@ -132,12 +140,13 @@
   border-radius: 5px;
 }
 
-.cardContainer:hover .card, .cardContainer.chosen .card {
-  transform: rotateY(180deg);
+/* .cardContainer:hover .card */
+.cardContainer.chosen .card {
+  transform: rotateY(0deg);
 }
 
 .cardContainer.chosen .card.chosenClicked {
-  transform: rotateY(0);
+  transform: rotateY(180deg);
 }
 
 .cardFront, .cardBack {
@@ -155,12 +164,12 @@
   transform: rotateY(0)
 }
 
-.cardFront > h3{
+.cardFront > h1{
   font-size: 22pt;
   margin-top: 0.4rem;
 }
 
-.cardFront > h4{
+.cardFront > h2{
   font-size: 15pt;
 }
 
@@ -180,13 +189,40 @@
   margin-right: 0.6rem;
 }
 
-.cardFront > span{
-  margin-top: auto;
+.cardFront > span {
+  margin: auto 0 2px 0;
 }
 
 
 .cardBack {
   transform: rotateY(180deg);
+}
+
+.cardBack > .cardHeader {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+  padding: 5px;
+  border-bottom: solid black 0.5px;
+}
+
+.cardBack > .cardHeader > .projectLogoContainer {
+  height: 2rem;
+  width: auto;
+}
+
+.cardBack > .cardHeader > h1 {
+  font-size: 18pt;
+  margin: 0 auto 0 auto;
+}
+
+.cardBack > .cardHeader > span {
+  font-size: 24pt;
+  margin-bottom: 0px;
 }
 
 .card.frontEnd {

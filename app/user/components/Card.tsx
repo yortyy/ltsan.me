@@ -32,6 +32,9 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
     }
   }
 
+  const startDateText = cardData["dates"]["start"].toLocaleString('default', { month: 'short', year: 'numeric'});
+  const endDateText = (cardData["dates"]["end"] ? cardData["dates"]["end"].toLocaleString('default', { month: 'short', year: 'numeric'}) : "Current");
+
   return <div className={clsx(userStyles.cardContainer, { [userStyles.chosen]: chosenData && cardData["id"] === chosenData["id"] })} onClick={handleCardClick}>
     <div className={clsx(userStyles.card, { 
                         [userStyles.frontEnd]: cardData["type"] === "Front-end",
@@ -40,11 +43,20 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
                         [userStyles.chosenClicked]: clicked
     })}>
       <div className={userStyles.cardBack}>
-        <h3 className={clsx(figtree.className)}>Back of Card</h3>
+        <div className={userStyles.cardHeader}>
+          <div className={userStyles.projectLogoContainer}>
+            <Image src={`/images/${cardData["id"]}/logo.png`}
+              fill
+              alt={`Logo for ${cardData["name"]}`}
+            />
+          </div>
+          <h1 className={clsx(figtree.className)}>{cardData["name"]}</h1>
+          <span className={userStyles["material-symbols-outlined"]}>link</span>
+        </div>
       </div>
       <div className={userStyles.cardFront}>
-        <h3 className={clsx(figtree.className)}>{cardData["name"]}</h3>
-        <h4 className={clsx(figtree.className)}>{cardData["type"]}</h4>
+        <h1 className={clsx(figtree.className)}>{cardData["name"]}</h1>
+        <h2 className={clsx(figtree.className)}>{cardData["type"] + " Project"}</h2>
         {cardData["mainTech"].map((name, index) => (
           <div key={index} className={userStyles.mainTech} >
             <Image src={`/images/logos/${name}-logo.png`}
@@ -55,7 +67,7 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
             />
             <span className={clsx(figtree.className)}>{name}</span></div>
         ))}
-        <span className={clsx(figtree.className)}>{cardData["dates"]["start"].toLocaleString('default', { month: 'short'})}</span>
+        <span className={clsx(figtree.className)}>{startDateText + " - " + endDateText}</span>
       </div>
     </div>
   </div>;

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "material-symbols": "^0.44.10",
     "motion": "^12.40.0",
     "next": "16.2.3",
     "react": "19.2.4",
