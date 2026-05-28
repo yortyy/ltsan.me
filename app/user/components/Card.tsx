@@ -45,14 +45,24 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
       <div className={userStyles.cardBack}>
         <div className={userStyles.cardHeader}>
           <div className={userStyles.projectLogoContainer}>
-            <Image src={`/images/${cardData["id"]}/logo.png`}
+            <Image src={`/images/cards/${cardData["id"]}/logo.png`}
               fill
+              sizes="3rem"
               alt={`Logo for ${cardData["name"]}`}
             />
           </div>
           <h1 className={clsx(figtree.className)}>{cardData["name"]}</h1>
           <span className={userStyles["material-symbols-outlined"]}>link</span>
         </div>
+          <div className={userStyles.projectScreenshotContainer}>
+            <Image src={`/images/cards/${cardData["id"]}/sc.png`}
+              fill
+              sizes="3rem"
+              alt={`Screenshot for ${cardData["name"]}`}
+            />
+          </div>
+          <p>{cardData['desc']}</p>
+        <span className={clsx(figtree.className)}>{startDateText + " - " + endDateText}</span>
       </div>
       <div className={userStyles.cardFront}>
         <h1 className={clsx(figtree.className)}>{cardData["name"]}</h1>

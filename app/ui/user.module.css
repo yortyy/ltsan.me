@@ -190,6 +190,7 @@
 }
 
 .cardFront > span {
+  font-size: 10pt;
   margin: auto 0 2px 0;
 }
 
@@ -212,7 +213,12 @@
 
 .cardBack > .cardHeader > .projectLogoContainer {
   height: 2rem;
-  width: auto;
+  width: 2rem;
+  position: relative;
+}
+
+.cardBack > .cardHeader > .projectLogoContainer > img {
+  object-fit: contain;
 }
 
 .cardBack > .cardHeader > h1 {
@@ -224,6 +230,26 @@
   font-size: 24pt;
   margin-bottom: 0px;
 }
+
+.cardBack > .projectScreenshotContainer {
+  margin: 0.7rem 0.7rem 0.5rem 0.7rem;
+  height: 40%;
+  width: 90%;
+  position: relative;
+  border: 1px black solid;
+}
+
+.cardBack > p {
+  margin-bottom: 5px;
+  font-size: 7pt;
+  width: 90%;
+}
+
+.cardBack > span {
+  font-size: 8pt;
+  margin: auto 0 2px 0;
+}
+
 
 .card.frontEnd {
   background-color: #E29191;
