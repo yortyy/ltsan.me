@@ -1,7 +1,9 @@
 'use client';
 import userStyles from '@/app/ui/user.module.css';
 import { figtree } from '@/app/ui/fonts';
+
 import Image from 'next/image';
+import Tilt from 'react-parallax-tilt';
 
 import clsx from 'clsx';
 
@@ -18,7 +20,7 @@ type CardProps = {
 
 export default function Card({ cardData, chosenData, setChosenCard, setCards }: CardProps) {
   const [clicked, setClicked] = useState(false);
-
+  
   function handleCardClick() {
     document.body.style.backgroundColor = cardData["colors"][0];
     if(!chosenData || cardData["id"] !== chosenData["id"]) {
@@ -35,7 +37,7 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
   const startDateText = cardData["dates"]["start"].toLocaleString('default', { month: 'short', year: 'numeric'});
   const endDateText = (cardData["dates"]["end"] ? cardData["dates"]["end"].toLocaleString('default', { month: 'short', year: 'numeric'}) : "Current");
 
-  return <div className={clsx(userStyles.cardContainer, { [userStyles.chosen]: chosenData && cardData["id"] === chosenData["id"] })} onClick={handleCardClick}>
+  return <Tilt glareEnable={true} ><div className={clsx(userStyles.cardContainer, { [userStyles.chosen]: chosenData && cardData["id"] === chosenData["id"] })} onClick={handleCardClick}>
     <div className={clsx(userStyles.card, { 
                         [userStyles.frontEnd]: cardData["type"] === "Front-end",
                         [userStyles.backEnd]: cardData["type"] === "Back-end",
@@ -80,5 +82,5 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
         <span className={clsx(figtree.className)}>{startDateText + " - " + endDateText}</span>
       </div>
     </div>
-  </div>;
+  </div></Tilt>;
 }
