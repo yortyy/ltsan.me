@@ -10,17 +10,17 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return <div className={`${navStyles.navbar} ${figtree.className}`}>
-    <h1>meTCG</h1>
+    <h1>ltsan.me</h1>
     <div>
-      <Link href="/" className={clsx(navStyles.navOpen, { [navStyles.active]: pathname === '/' })}>
-        Home
+      <Link href="/projects" className={clsx(navStyles.link, { [navStyles.active]: pathname === '/' })}>
+        Projects
       </Link>
-      <Link href="/about" className={clsx(navStyles.navOpen, { [navStyles.active]: pathname === '/about' })}>
-        About
+      <Link href="/bio" className={clsx(navStyles.link, { [navStyles.active]: pathname === '/about' })}>
+        Bio
       </Link>
     </div>
-    <Link href="/user" className={clsx(navStyles.login, { [navStyles.active]: pathname === '/user' })}>
-      Login
+    <Link href="/contact" className={clsx(navStyles.button, { [navStyles.active]: pathname === '/user' })}>
+      Contact
     </Link>
   </div>
 }

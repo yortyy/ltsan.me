@@ -127,12 +127,18 @@
 .cardContainer.chosen {
   z-index: 10;
   position: absolute;
-  top: calc(50% - var(--card-height) / 2 * 0.6 * 2);
-  left: calc(50% - var(--card-width) / 2 * 0.6);
+  top: calc(50% - var(--card-height) / 2);
+  left: calc(50% - var(--card-width) / 2);
   transform: scale(1.5);
 }
 
+.cardContainerTilt {
+  width: inherit;
+  height: inherit;
+}
+
 .card {
+  position: relative;
   width: 100%;
   height: 100%;
   transition: transform 0.5s ease, flex 0.3s ease;;
