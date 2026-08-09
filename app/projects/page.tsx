@@ -1,7 +1,6 @@
-import { figtree } from './ui/fonts';
 import Image from 'next/image';
 
-export default function Home() {
+export default function Page() {
   return <div>
     <div className='flex items-center justify-center'>
       <Image

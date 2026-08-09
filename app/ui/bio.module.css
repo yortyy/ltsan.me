@@ -1,0 +1,37 @@
+.title {
+  margin-top: 1rem;
+}
+
+.imageDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.image {
+  margin: 1rem;
+  width: 35%;
+}
+
+@media (min-width:900px) {
+  .image {
+    width: 30%;
+  }
+}
+
+@media (max-width:530px) {
+  .imageDiv {
+    flex-direction: column;
+  }
+  .image {
+    width: 80%;
+  }
+  .image:nth-child(even) {
+    margin-left: auto;
+  }
+  .image:nth-child(odd) {
+    margin-right: auto;
+  }
+}
