@@ -11,6 +11,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      material-symbols:
+        specifier: ^0.44.10
+        version: 0.44.12
       motion:
         specifier: ^12.40.0
         version: 12.40.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -23,6 +26,9 @@ importers:
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
+      react-parallax-tilt:
+        specifier: ^1.7.328
+        version: 1.7.337(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -1527,6 +1533,9 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
+  material-symbols@0.44.12:
+    resolution: {integrity: sha512-lZkS9BwISNU2Jbup+IlwZrr9z1oAK6zx38qPpe7mNzkXwiIEnQaxPz1Sf3bNZ0MX15LNlJQNjKI3MWLgmo83+Q==}
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -1720,6 +1729,12 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-parallax-tilt@1.7.337:
+    resolution: {integrity: sha512-aJnSROIT1NUgNJgOkN1G+XxlsRyc2fci06qKGRPlUEp4vyLDMsoKMOpVB1iN3QM+KeBEDLd8Cx1EVErB6mL/Cg==}
+    peerDependencies:
+      react: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react@19.2.4:
     resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
@@ -3545,6 +3560,8 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  material-symbols@0.44.12: {}
+
   math-intrinsics@1.1.0: {}
 
   merge2@1.4.1: {}
@@ -3732,6 +3749,11 @@ snapshots:
       scheduler: 0.27.0
 
   react-is@16.13.1: {}
+
+  react-parallax-tilt@1.7.337(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
 
   react@19.2.4: {}
 
