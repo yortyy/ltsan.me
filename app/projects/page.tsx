@@ -20,7 +20,11 @@ export default function Page() {
   const [cards, setCards] = useState<CardType[]>([...cardsData]);
   const [chosenCard, setChosenCard] = useState<CardType | null>(null);
 
-  useEffect(() => {return () => { document.body.style.backgroundColor = ""; };}, [gameOn]);
+  useEffect(() => {
+    if (!gameOn) document.body.style.backgroundColor = "#000000ce";
+    if (gameOn) document.body.style.backgroundColor = "";
+    return () => { document.body.style.backgroundColor = ""; };
+  }, [gameOn]);
 
   function drawCard() {
     const newCard:CardType = {
