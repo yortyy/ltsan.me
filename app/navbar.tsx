@@ -1,28 +1,37 @@
 'use client';
 
-import navStyles from './ui/navbar.module.css';
+import navCSS from './ui/navbar.module.css';
 import { figtree } from './ui/fonts';
 import Link from 'next/link';
+import { ViewTransition } from "react";
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 
 export default function NavBar() {
   const pathname = usePathname();
 
-  return <div className={`${navStyles.navbar} ${figtree.className}`}>
-    <Link href="/" className={clsx(navStyles.title, { [navStyles.active]: pathname === '/' })}>
-      ltsan.me
-    </Link>
-    <div>
-      <Link href="/projects" className={clsx(navStyles.link, { [navStyles.active]: pathname === '/projects' })}>
-        Projects
-      </Link>
-      <Link href="/bio" className={clsx(navStyles.link, { [navStyles.active]: pathname === '/bio' })}>
-        Bio
-      </Link>
+
+  return <div className={`${navCSS.navbar} ${figtree.className}`}>
+    <div className={navCSS.titleDiv}>
+      <Link href="/">ltsan.me</Link>
+      {pathname === '/' ? <Underline /> : ""}
     </div>
-    <Link href="/contact" className={clsx(navStyles.button, { [navStyles.active]: pathname === '/contact' })}>
-      Contact
-    </Link>
+    <div>
+      <div>
+        <Link href="/projects" className={navCSS.link}>Projects</Link>
+        {pathname === '/projects' ? <Underline /> : ""}
+      </div>
+      <div>
+        <Link href="/bio" className={navCSS.link}>Bio</Link>
+        {pathname === '/bio' ? <Underline /> : ""}
+
+      </div>
+    </div>
+    <Link href="/contact" className={navCSS.button}>Contact</Link>
   </div>
+}
+
+
+function Underline() {
+  return <ViewTransition name="underline"><hr className={navCSS.underline} /></ViewTransition>;
 }
