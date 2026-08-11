@@ -1,5 +1,5 @@
 'use client';
-import userStyles from '@/app/ui/user.module.css';
+import projectsCSS from '@/app/ui/projects.module.css';
 import { figtree } from '@/app/ui/fonts';
 
 import Image from 'next/image';
@@ -36,17 +36,17 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
   const startDateText = cardData["dates"]["start"].toLocaleString('default', { month: 'short', year: 'numeric'});
   const endDateText = (cardData["dates"]["end"] ? cardData["dates"]["end"].toLocaleString('default', { month: 'short', year: 'numeric'}) : "Current");
 
-  return <div className={clsx(userStyles.cardContainer, { [userStyles.chosen]: chosenData && cardData["id"] === chosenData["id"] })} onClick={handleCardClick}>
-    <Tilt className={clsx(userStyles.cardContainerTilt)} glareEnable={true} >
-    <div className={clsx(userStyles.card, { 
-                        [userStyles.frontEnd]: cardData["type"] === "Front-end",
-                        [userStyles.backEnd]: cardData["type"] === "Back-end",
-                        [userStyles.fullStack]: cardData["type"] === "Full-stack",
-                        [userStyles.chosenClicked]: clicked
+  return <div className={clsx(projectsCSS.cardContainer, { [projectsCSS.chosen]: chosenData && cardData["id"] === chosenData["id"] })} onClick={handleCardClick}>
+    <Tilt className={clsx(projectsCSS.cardContainerTilt)} glareEnable={true} >
+    <div className={clsx(projectsCSS.card, { 
+                        [projectsCSS.frontEnd]: cardData["type"] === "Front-end",
+                        [projectsCSS.backEnd]: cardData["type"] === "Back-end",
+                        [projectsCSS.fullStack]: cardData["type"] === "Full-stack",
+                        [projectsCSS.chosenClicked]: clicked
     })}>
-      <div className={userStyles.cardBack}>
-        <div className={userStyles.cardHeader}>
-          <div className={userStyles.projectLogoContainer}>
+      <div className={projectsCSS.cardBack}>
+        <div className={projectsCSS.cardHeader}>
+          <div className={projectsCSS.projectLogoContainer}>
             <Image src={`/images/cards/${cardData["id"]}/logo.png`}
               fill
               sizes="3rem"
@@ -54,9 +54,9 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
             />
           </div>
           <h1 className={clsx(figtree.className)}>{cardData["name"]}</h1>
-          <span className={userStyles["material-symbols-outlined"]}>link</span>
+          <span className={projectsCSS["material-symbols-outlined"]}>link</span>
         </div>
-          <div className={userStyles.projectScreenshotContainer}>
+          <div className={projectsCSS.projectScreenshotContainer}>
             <Image src={`/images/cards/${cardData["id"]}/sc.png`}
               fill
               sizes="3rem"
@@ -66,15 +66,15 @@ export default function Card({ cardData, chosenData, setChosenCard, setCards }: 
           <p>{cardData['desc']}</p>
         <span className={clsx(figtree.className)}>{startDateText + " - " + endDateText}</span>
       </div>
-      <div className={userStyles.cardFront}>
+      <div className={projectsCSS.cardFront}>
         <h1 className={clsx(figtree.className)}>{cardData["name"]}</h1>
         <h2 className={clsx(figtree.className)}>{cardData["type"] + " Project"}</h2>
         {cardData["mainTech"].map((name, index) => (
-          <div key={index} className={userStyles.mainTech} >
+          <div key={index} className={projectsCSS.mainTech} >
             <Image src={`/images/logos/${name}-logo.png`}
               width={512}
               height={512}
-              className={userStyles.mainTechLogo}
+              className={projectsCSS.mainTechLogo}
               alt={`Logo of ${name}`}
             />
             <span className={clsx(figtree.className)}>{name}</span></div>

@@ -1,4 +1,4 @@
-import userStyles from '@/app/ui/user.module.css';
+import projectsCSS from '@/app/ui/projects.module.css';
 import { figtree } from '@/app/ui/fonts';
 
 import clsx from 'clsx';
@@ -8,7 +8,7 @@ type UserHeaderProps = {
 };
 
 export default function UserHeader({ username }: UserHeaderProps) {
-  return <div className={userStyles.userTitle}>
+  return <div className={projectsCSS.userTitle}>
     <h1 className={clsx(figtree.className)}>{username}</h1>
   </div>;
 }
