@@ -124,7 +124,7 @@
   height: calc(var(--card-height) * 0.8);
   width: calc(var(--card-width) * 0.8);
   transition: top 2s ease, left 2s ease, transform 0.25s ease;
-  perspective: 1000px;
+  perspective: 600px;
   cursor: pointer;
 }
 
@@ -143,13 +143,15 @@
 .cardContainerTilt {
   width: inherit;
   height: inherit;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .card {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s ease, flex 0.3s ease;;
+  transition: transform 0.6s ease, flex 0.3s ease;;
   transform-style: preserve-3d;
   border-radius: 5px;
 }
@@ -172,10 +174,12 @@
   align-items: center;
   backface-visibility: hidden;
   position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .cardFront {
-  transform: rotateY(0)
+  transform: rotateY(0) translateZ(1px);
 }
 
 .cardFront > h1{
@@ -208,9 +212,8 @@
   margin: auto 0 2px 0;
 }
 
-
 .cardBack {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(1px);
 }
 
 .cardBack > .cardHeader {
@@ -274,3 +277,4 @@
 .card.fullStack {
   background-color: #919de2;
 }
+
