@@ -56,28 +56,26 @@
   height: var(--card-height);
   width: var(--card-width);
   padding: 2rem;
-  box-shadow: 5px 5px rgb(0, 0, 0);
+  box-shadow: 8px 8px rgb(0, 0, 0);
   position: absolute;
   transition: transform 0.2s ease;
   z-index: 5;
   cursor: pointer;
+  top: calc(50% - var(--card-height) / 2);
   right: calc(50% - var(--card-width) / 2);
-  bottom: calc(50% - var(--card-height) / 2);
-  
-  transition:
-    right 2s ease,
-    bottom 2s ease,
-    transform 2s ease;
-
 }
 
 .deckContainer.gameOn {
-  right: 0;
-  bottom: 0;
-  transform: scale(0.8);
+  transition:
+    right 2s ease,
+    top 2s ease,
+    transform 2s ease;
+  transform: scale(0.4);
+  top: -6.5rem;
+  right: -4rem;
 }
 .deckContainer.gameOn:hover {
-  transform: scale(calc(0.8 * 0.97));
+  transform: scale(calc(0.4 * 0.97));
 }
 
 .deckContainer:hover {
@@ -102,15 +100,16 @@
 
 .handContainer {
   gap: 1rem;
-  bottom: 2rem;
-  padding: 0 0 0 1rem;
-  opacity: 0;
-  width: calc(100vw - var(--card-width));
-  position: absolute;
+  top: 200px;
   left: 0;
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  padding: 0rem 1rem;
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 1rem;
   transition: opacity 3s ease, transform 3s ease;
   transform: translateY(300px);
 }
@@ -121,8 +120,11 @@
 }
 
 .cardContainer {
-  height: calc(var(--card-height) * 0.8);
-  width: calc(var(--card-width) * 0.8);
+  width: 100%;
+  max-width: 220px;
+  justify-self: center;
+
+  aspect-ratio: 280 / 400;
   transition: top 2s ease, left 2s ease, transform 0.25s ease;
   perspective: 600px;
   cursor: pointer;
@@ -132,54 +134,56 @@
   transform: translateY(-10px) scale(0.98);
 }
 
+.mainContent:has(.cardContainer.chosen) .cardContainer:not(.chosen),
+.mainContent:has(.cardContainer.chosen) .deckContainer {
+  pointer-events: none;
+}
+.mainContent:has(.cardContainer.chosen)::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 60%);
+  z-index: 9;
+}
+
 .cardContainer.chosen {
   z-index: 10;
   position: absolute;
-  top: calc(50% - var(--card-height) / 2);
-  left: calc(50% - var(--card-width) / 2);
-  transform: scale(1.5);
+  height: 80vh;
+  width: calc(80vh * 280 / 400);
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: none;
 }
 
 .cardContainerTilt {
-  width: inherit;
-  height: inherit;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
-  overflow: hidden;
 }
-
 .card {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.6s ease, flex 0.3s ease;;
-  transform-style: preserve-3d;
   border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-/* .cardContainer:hover .card */
-.cardContainer.chosen .card {
-  transform: rotateY(0deg);
-}
-
-.cardContainer.chosen .card.chosenClicked {
-  transform: rotateY(180deg);
-}
-
-.cardFront, .cardBack {
+.cardFront,
+.cardBack {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
-.cardFront {
-  transform: rotateY(0) translateZ(1px);
+  border-radius: 5px;
 }
 
 .cardFront > h1{
@@ -210,10 +214,6 @@
 .cardFront > span {
   font-size: 10pt;
   margin: auto 0 2px 0;
-}
-
-.cardBack {
-  transform: rotateY(180deg) translateZ(1px);
 }
 
 .cardBack > .cardHeader {

@@ -14,6 +14,7 @@
     "motion": "^12.40.0",
     "next": "16.2.3",
     "react": "19.2.4",
+    "react-card-flip": "^1.2.3",
     "react-dom": "19.2.4",
     "react-parallax-tilt": "^1.7.328"
   },
