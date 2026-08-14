@@ -46,96 +46,15 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
 
   const chosen = chosenData !== null && cardData.id === chosenData.id;
 
-  const startDateText = cardData.dates.start.toLocaleString(
-    'default',
-    { month: 'short', year: 'numeric' }
-  );
-
-  const endDateText = cardData.dates.end
-    ? cardData.dates.end.toLocaleString(
-        'default',
-        { month: 'short', year: 'numeric' }
-      )
-    : 'Current';
-
   return (
-    <div
-      className={clsx(projectsCSS.cardContainer, {
-        [projectsCSS.chosen]: chosen,
-      })}
-      onClick={handleCardClick}
-    >
+    <div className={clsx(projectsCSS.cardContainer, {[projectsCSS.chosen]: chosen })} onClick={handleCardClick}>
       <TiltLayer setFlipped={setFlipped} clicked={clicked} cardData={cardData}>
         <ReactCardFlip 
           isFlipped={flipped} 
           flipDirection="horizontal" 
-          containerStyle={{ width: '100%', height: '100%' }}
-        >
-          <div className={clsx(projectsCSS.card, projectsCSS.cardFront, {
-            [projectsCSS.frontEnd]: cardData.type === 'Front-end',
-            [projectsCSS.backEnd]: cardData.type === 'Back-end',
-            [projectsCSS.fullStack]: cardData.type === 'Full-stack',
-          })}>
-            <h1 className={figtree.className}>
-              {cardData.name}
-            </h1>
-
-            <h2 className={figtree.className}>
-              {cardData.type + ' Project'}
-            </h2>
-
-            {cardData.mainTech.map((name, index) => (
-              <div
-                key={index}
-                className={projectsCSS.mainTech}
-              >
-                <Image
-                  src={`/images/logos/${name}-logo.png`}
-                  width={512}
-                  height={512}
-                  className={projectsCSS.mainTechLogo}
-                  alt={`Logo of ${name}`}
-                />
-
-                <span className={figtree.className}>
-                  {name}
-                </span>
-              </div>
-            ))}
-
-            <span className={figtree.className}>
-              {startDateText + ' - ' + endDateText}
-            </span>
-          </div>
-          <div className={clsx(projectsCSS.card, projectsCSS.cardBack, {
-            [projectsCSS.frontEnd]: cardData.type === 'Front-end',
-            [projectsCSS.backEnd]: cardData.type === 'Back-end',
-            [projectsCSS.fullStack]: cardData.type === 'Full-stack',
-          })}>
-            <div className={projectsCSS.cardHeader}>
-              <div className={projectsCSS.projectLogoContainer}>
-                <Image
-                  src={`/images/cards/${cardData.id}/logo.png`}
-                  fill
-                  sizes="3rem"
-                  alt={`Logo for ${cardData.name}`}
-                />
-              </div>
-              <h1 className={figtree.className}>{cardData.name}</h1>
-              <span className={projectsCSS['material-symbols-outlined']}>link</span>
-            </div>
-
-            <div className={projectsCSS.projectScreenshotContainer}>
-              <Image
-                src={`/images/cards/${cardData.id}/sc.png`}
-                fill
-                sizes="3rem"
-                alt={`Screenshot for ${cardData.name}`}
-              />
-            </div>
-            <p>{cardData.desc}</p>
-            <span className={figtree.className}>{startDateText + ' - ' + endDateText}</span>
-          </div>
+          containerStyle={{ width: '100%', height: '100%' }}>
+          <CardFront cardData={cardData} />
+          <CardBack cardData={cardData} />
         </ReactCardFlip>
       </TiltLayer>
     </div>
@@ -181,4 +100,76 @@ function TiltLayer({ setFlipped, children }: TiltLayerProps) {
       onLeave={handleLeave}
     >
       {children}</Tilt>
+}
+
+
+function CardFront({ cardData }: { cardData: CardType }) {
+  return <div className={clsx(projectsCSS.cardFront, {
+            [projectsCSS.frontEnd]: cardData.type === 'Front-end',
+            [projectsCSS.backEnd]: cardData.type === 'Back-end',
+            [projectsCSS.fullStack]: cardData.type === 'Full-stack',
+          })}>
+
+            <h1 className={figtree.className}>{cardData.type}</h1>
+            <div className={projectsCSS.mainTechGroup}>
+            {cardData.mainTech.map((name, index) => (
+              <div key={index} className={projectsCSS.mainTech}>
+                <Image
+                  src={`/images/logos/${name}-logo.png`}
+                  width={512}
+                  height={512}
+                  className={projectsCSS.mainTechLogo}
+                  alt={`Logo of ${name}`} />
+                <span className={figtree.className}>{name}</span>
+              </div>
+            ))}
+            </div>
+            <hr className={projectsCSS.rightLine}></hr>
+            <hr className={projectsCSS.leftLine}></hr>
+            <h1 className={figtree.className}>{cardData.name}</h1>
+          </div>
+}
+
+function CardBack({ cardData }: { cardData: CardType}) {
+    const startDateText = cardData.dates.start.toLocaleString(
+    'default',
+    { month: 'short', year: 'numeric' }
+  );
+
+  const endDateText = cardData.dates.end
+    ? cardData.dates.end.toLocaleString(
+        'default',
+        { month: 'short', year: 'numeric' }
+      )
+    : 'Current';
+
+  return <div className={clsx(projectsCSS.cardBack, {
+            [projectsCSS.frontEnd]: cardData.type === 'Front-end',
+            [projectsCSS.backEnd]: cardData.type === 'Back-end',
+            [projectsCSS.fullStack]: cardData.type === 'Full-stack',
+          })}>
+            <div className={projectsCSS.cardHeader}>
+              <div className={projectsCSS.projectLogoContainer}>
+                <Image
+                  src={`/images/cards/${cardData.id}/logo.png`}
+                  fill
+                  sizes="3rem"
+                  alt={`Logo for ${cardData.name}`}
+                />
+              </div>
+              <h1 className={figtree.className}>{cardData.name}</h1>
+              <span className={projectsCSS['material-symbols-outlined']}>link</span>
+            </div>
+
+            <div className={projectsCSS.projectScreenshotContainer}>
+              <Image
+                src={`/images/cards/${cardData.id}/sc.png`}
+                fill
+                sizes="3rem"
+                alt={`Screenshot for ${cardData.name}`}
+              />
+            </div>
+            <p>{cardData.desc}</p>
+            <span className={figtree.className}>{startDateText + ' - ' + endDateText}</span>
+          </div>
 }
