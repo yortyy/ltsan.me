@@ -163,11 +163,12 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  container-type: inline-size;
 }
 
 .cardFront > h1 {
-  font-size: 18pt;
-  font-weight: 200;
+  font-size: max(12pt, 12cqw);
+  font-weight: light;
 }
 .cardFront > h1:first-of-type {
   margin: 0 auto 0 5px;
@@ -176,40 +177,46 @@
   margin: 0 5px 0 auto;
 }
 
+.cardFront > .mainTechGroup {
+  margin: 0.5rem 0;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  align-items: center;
+  justify-items: flex-start;
+  flex-grow: 1;
+}
+
 .cardFront > .mainTechGroup > .mainTech {
-  width: 80%;
-  height: 2.2rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 0.5rem 0 0 0;
 }
 
 .cardFront > .mainTechGroup span {
-  font-size: 16pt;
-  font-weight: 100;
+  font-size: max(10pt, 10cqw);
+  font-weight: lighter;
 }
 
 .cardFront .mainTechLogo {
-  height: 2.2rem;
+  height: max(1rem, 14cqw);
   width: auto;
   font-size: 6pt;
-  margin-right: 0.6rem;
+  margin-right: max(0.1rem, 3cqw);
 }
 
 .cardFront > .leftLine, .cardFront > .rightLine {
-  width: 1px;
-  height: 50%;
+  width: 0.5cqw;
+  height: 55%;
   position: absolute;
   background: black;
 }
 .cardFront > .leftLine {
-  top: 30px;
-  left: 19px;
+  top: max(1.2em, 16cqw);
+  left: 10%;
 }
 .cardFront > .rightLine {
-  bottom: 30px;
-  right: 20px;
+  bottom: max(1.2em, 16cqw);
+  right: calc(10%);
 }
 .cardBack > .cardHeader {
   height: 3rem;
@@ -267,3 +274,18 @@
 .cardContainer .backEnd { background-color: #91BEE2; }
 .cardContainer .fullStack { background-color: #919de2; }
 
+
+@media (max-width: 580px) {
+  .handContainer {
+    grid-template-columns: repeat(auto-fit, minmax(min(110px, 100%), 1fr));
+    gap: 0.5rem;
+  }
+  .cardContainer.chosen {
+    height: calc(80vw * 400 / 280);
+    width: 80vw;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: none;
+  }
+}
