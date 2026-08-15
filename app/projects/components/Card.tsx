@@ -28,6 +28,7 @@ type TiltLayerProps = {
 export default function Card({cardData, chosenData, setChosenCard, setCards }: CardProps) {
   const [clicked, setClicked] = useState(false);
   const [flipped, setFlipped] = useState(false);
+  
 
   function handleCardClick() {
     document.body.style.backgroundColor = cardData.colors[0];
@@ -50,7 +51,7 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
     <div className={clsx(projectsCSS.cardContainer, {[projectsCSS.chosen]: chosen })} onClick={handleCardClick}>
       <TiltLayer setFlipped={setFlipped} clicked={clicked} cardData={cardData}>
         <ReactCardFlip 
-          isFlipped={flipped} 
+          isFlipped={flipped}
           flipDirection="horizontal" 
           containerStyle={{ width: '100%', height: '100%' }}>
           <CardFront cardData={cardData} />
@@ -149,27 +150,35 @@ function CardBack({ cardData }: { cardData: CardType}) {
             [projectsCSS.fullStack]: cardData.type === 'Full-stack',
           })}>
             <div className={projectsCSS.cardHeader}>
-              <div className={projectsCSS.projectLogoContainer}>
-                <Image
-                  src={`/images/cards/${cardData.id}/logo.png`}
-                  fill
-                  sizes="3rem"
-                  alt={`Logo for ${cardData.name}`}
-                />
-              </div>
               <h1 className={figtree.className}>{cardData.name}</h1>
-              <span className={projectsCSS['material-symbols-outlined']}>link</span>
-            </div>
-
-            <div className={projectsCSS.projectScreenshotContainer}>
               <Image
-                src={`/images/cards/${cardData.id}/sc.png`}
-                fill
-                sizes="3rem"
-                alt={`Screenshot for ${cardData.name}`}
+                src={`/images/ui/link.png`}
+                width={27}
+                height={27}
+                alt={`Logo for ${cardData.name}`}
               />
             </div>
+            <div className={projectsCSS.techGroup}>
+            {cardData.mainTech.map((name, index) => (
+              <Image
+                src={`/images/logos/${name}-logo.png`}
+                width={512}
+                height={512}
+                className={projectsCSS.mainTechLogo}
+                alt={`Logo of ${name}`} />
+            ))}
+            </div>
+            <Image
+              src={`/images/cards/${cardData.id}/sc.png`}
+              width={512}
+              height={512}
+              className={projectsCSS.projectScreenshot}
+              alt={`Screenshot for ${cardData.name}`}
+            />
             <p>{cardData.desc}</p>
-            <span className={figtree.className}>{startDateText + ' - ' + endDateText}</span>
+            <div className={projectsCSS.bottomTextDiv}>
+              <span className={figtree.className}>{cardData.type}</span>
+              <span className={figtree.className}>{startDateText + ' - ' + endDateText}</span>
+            </div>
           </div>
 }
