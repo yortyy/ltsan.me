@@ -8,7 +8,7 @@ import Tilt from 'react-parallax-tilt';
 import ReactCardFlip from 'react-card-flip';
 import clsx from 'clsx';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Card as CardType } from '@/app/lib/definitions';
 
 type CardProps = {
@@ -25,10 +25,32 @@ type TiltLayerProps = {
   cardData: CardType;
 };
 
+const TRANS_MS: number = 400;
+
 export default function Card({cardData, chosenData, setChosenCard, setCards }: CardProps) {
   const [clicked, setClicked] = useState(false);
   const [flipped, setFlipped] = useState(false);
-  
+  const chosen = chosenData !== null && cardData.id === chosenData.id;
+
+  useEffect(() => {
+    if (!chosen) return;
+
+    function handleOutsideClick(e: MouseEvent) {
+      const target = e.target as HTMLElement;
+      if (!target.closest(`.${projectsCSS.chosen}`)) {
+        setChosenCard(null);
+        setTimeout(() => {setCards(prev => {
+            if (!chosenData) return prev;
+            return [...prev, chosenData];
+        });}, TRANS_MS);
+      }
+    }
+
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [chosen, setChosenCard]);
 
   function handleCardClick() {
     document.body.style.backgroundColor = cardData.colors[0];
@@ -45,7 +67,6 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
     }
   }
 
-  const chosen = chosenData !== null && cardData.id === chosenData.id;
 
   return (
     <div className={clsx(projectsCSS.cardContainer, {[projectsCSS.chosen]: chosen })} onClick={handleCardClick}>
@@ -85,13 +106,13 @@ function TiltLayer({ setFlipped, children }: TiltLayerProps) {
 
     flipTimeout.current = setTimeout(() => {
       setFlipped(false);
-    }, 300);
+    }, TRANS_MS);
   }
   return <Tilt
       tiltMaxAngleX={15}
       tiltMaxAngleY={15}
       perspective={3000}
-      transitionSpeed={300}
+      transitionSpeed={TRANS_MS}
       scale={1.02}
       glareEnable={true}
       glareMaxOpacity={0.3}

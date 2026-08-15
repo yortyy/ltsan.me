@@ -65,7 +65,7 @@ export default function Page() {
     <motion.div layout="position" className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
       <AnimatePresence mode="popLayout">
       {cards.map((item) =>
-          <motion.div layout key={item["id"]} initial={{ opacity: 0, y: 80, rotate: -5 }} animate={{ opacity: 1, y: 0, rotate: 0 }} exit={{ opacity: 0, y: 80, rotate: 5 }} transition={{ type: "spring", stiffness: 300, damping: 20, duration: 0.4 }}>
+          <motion.div layout key={item["id"]} initial={{ opacity: 0, y: 80, rotate: -5 }} animate={{ opacity: 1, y: 0, rotate: 0 }} exit={{ opacity: 0, y: 40, rotate: 5 }} transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.4 }}>
             <Card key={item["id"]} cardData={item} setChosenCard={setChosenCard} chosenData={(chosenCard ? chosenCard : null)} setCards={setCards} />
           </motion.div>
       )}
