@@ -42,24 +42,23 @@ export default function Page() {
       };
     setCards([...cards, newCard]);
   }
-  
+  //<UserHeader username="Lance" />
   return <>
-  <UserHeader username="Lance" />
   <div className={clsx(projectsCSS.mainContent, { [projectsCSS.gameOn]: gameOn })}>
     <AnimatePresence mode="wait">
       {chosenCard && (
         <motion.div className={projectsCSS.chosenCardMotionDiv}
           key={chosenCard.id}
-          initial={{ opacity: 0, y: 80, rotate: 5 }}
+          initial={{ opacity: 0, y: 90, rotate: 5 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
-          exit={{ opacity: 0, y: 80, rotate: -5 }}
-          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0, y: 90, rotate: -5 }}
+          transition={{ duration: 0.3 }}
         >
         <Card cardData={chosenCard} setChosenCard={setChosenCard} chosenData={chosenCard} setCards={setCards} />
         </motion.div>
       )}
     </AnimatePresence>
-    <Deck username="Lance" setGameOn={setGameOn} gameOn={gameOn} drawCard={drawCard} image={null} />
+    <Deck username="Lance" setGameOn={setGameOn} gameOn={gameOn} drawCard={drawCard} image={"/images/personal/nrt-ramen.gif"} />
     <motion.div layout className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
       <AnimatePresence mode="popLayout">
       {cards.map((item) =>

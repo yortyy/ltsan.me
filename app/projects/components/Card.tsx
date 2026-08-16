@@ -25,7 +25,7 @@ type TiltLayerProps = {
   cardData: CardType;
 };
 
-const TRANS_MS: number = 400;
+const TRANS_MS: number = 250;
 
 export default function Card({cardData, chosenData, setChosenCard, setCards }: CardProps) {
   const [clicked, setClicked] = useState(false);
@@ -180,7 +180,7 @@ function CardBack({ cardData }: { cardData: CardType}) {
               />
             </div>
             <div className={projectsCSS.techGroup}>
-            {cardData.mainTech.map((name, index) => (
+            {cardData.mainTech.map((name) => (
               <Image
                 src={`/images/logos/${name}-logo.png`}
                 width={512}

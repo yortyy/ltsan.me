@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import projectsCSS from '@/app/ui/projects.module.css';
 import { figtree } from '@/app/ui/fonts';
 
@@ -29,6 +30,7 @@ export default function Deck({ username, image, setGameOn, gameOn, drawCard }: D
 
   return <div className={clsx(projectsCSS.deckContainer, { [projectsCSS.gameOn]: gameOn })} onClick={handleDeckClick}>
     <h3 className={clsx(figtree.className)}>{username}'s Deck</h3>
-    {image ? <img src={image} alt={`${username}'s deck image`} className={projectsCSS.deckImage} /> : <span className={projectsCSS.deckLetter}>{firstLetter}</span>}
+    {image ? <Image src={image} width={512} height={512} alt={`Profile picture of ${username}`}/>
+    : <span className={projectsCSS.deckLetter}>{firstLetter}</span>}
   </div>;
 }
