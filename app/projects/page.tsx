@@ -46,26 +46,24 @@ export default function Page() {
   return <>
   <UserHeader username="Lance" />
   <div className={clsx(projectsCSS.mainContent, { [projectsCSS.gameOn]: gameOn })}>
-  <div className={projectsCSS.chosenCard}>
     <AnimatePresence mode="wait">
       {chosenCard && (
-        <motion.div
+        <motion.div className={projectsCSS.chosenCardMotionDiv}
           key={chosenCard.id}
-          initial={{ opacity: 0, y: 80, rotate: -5 }}
+          initial={{ opacity: 0, y: 80, rotate: 5 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
-          exit={{ opacity: 0, y: 80, rotate: 5 }}
-          transition={{ duration: 0.3 }}
+          exit={{ opacity: 0, y: 80, rotate: -5 }}
+          transition={{ duration: 0.2 }}
         >
-          <Card cardData={chosenCard} setChosenCard={setChosenCard} chosenData={chosenCard} setCards={setCards} />
+        <Card cardData={chosenCard} setChosenCard={setChosenCard} chosenData={chosenCard} setCards={setCards} />
         </motion.div>
       )}
     </AnimatePresence>
-  </div>
     <Deck username="Lance" setGameOn={setGameOn} gameOn={gameOn} drawCard={drawCard} image={null} />
-    <motion.div layout="position" className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
+    <motion.div layout className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
       <AnimatePresence mode="popLayout">
       {cards.map((item) =>
-          <motion.div layout key={item["id"]} initial={{ opacity: 0, y: 80, rotate: -5 }} animate={{ opacity: 1, y: 0, rotate: 0 }} exit={{ opacity: 0, y: 40, rotate: 5 }} transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.4 }}>
+          <motion.div layout key={item["id"]} initial={{ opacity: 0, y: 80, rotate: -5 }} animate={{ opacity: 1, y: 0, rotate: 0 }} exit={{ opacity: 0, y: 40, rotate: 5 }} transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.2 }}>
             <Card key={item["id"]} cardData={item} setChosenCard={setChosenCard} chosenData={(chosenCard ? chosenCard : null)} setCards={setCards} />
           </motion.div>
       )}
