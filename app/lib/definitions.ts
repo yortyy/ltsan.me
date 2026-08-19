@@ -1,11 +1,12 @@
 export type Card = {
   id: string;
   name: string;
-  type: ('Front-end' | 'Back-end' | 'Full-stack');
+  type: string;
   colors: string[];
   desc: string;
   mainTech: string[];
   sideTech: string[] | null;
+  link: string;
   dates: {
     start: Date;
     end: Date | null;

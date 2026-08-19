@@ -127,12 +127,12 @@ function TiltLayer({ setFlipped, children }: TiltLayerProps) {
 
 function CardFront({ cardData }: { cardData: CardType }) {
   return <div className={projectsCSS.cardFront} style={{ backgroundColor: cardData.colors[0] }}>
-            <h1 className={figtree.className}>{cardData.type}</h1>
+            <h1 className={figtree.className}>{cardData.name}</h1>
             <div className={projectsCSS.mainTechGroup}>
             {cardData.mainTech.map((name, index) => (
               <div key={cardData.name + index} className={projectsCSS.mainTech}>
                 <Image
-                  src={`/images/logos/${name.toLowerCase()}-logo.png`}
+                  src={`/images/logos/${name}-logo.svg`}
                   width={512}
                   height={512}
                   className={projectsCSS.mainTechLogo}
@@ -143,7 +143,7 @@ function CardFront({ cardData }: { cardData: CardType }) {
             </div>
             <hr className={projectsCSS.rightLine}></hr>
             <hr className={projectsCSS.leftLine}></hr>
-            <h1 className={figtree.className}>{cardData.name}</h1>
+            <h1 className={figtree.className}>{cardData.type}</h1>
           </div>
 }
 
@@ -163,18 +163,29 @@ function CardBack({ cardData }: { cardData: CardType}) {
   return <div className={projectsCSS.cardBack} style={{ backgroundColor: cardData.colors[0] }}>
             <div className={projectsCSS.cardHeader}>
               <h1 className={figtree.className}>{cardData.name}</h1>
-              <Image
-                src={`/images/ui/link.png`}
-                width={27}
-                height={27}
-                alt={`Logo for ${cardData.name}`}
-              />
+              <a href={cardData.link} target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/images/ui/link.png"
+                  width={27}
+                  height={27}
+                  alt={`Open ${cardData.name}`}
+                />
+              </a>
             </div>
             <div className={projectsCSS.techGroup}>
             {cardData.mainTech.map((name, index) => (
               <Image
                 key={cardData.name + index}
-                src={`/images/logos/${name.toLowerCase()}-logo.png`}
+                src={`/images/logos/${name}-logo.svg`}
+                width={512}
+                height={512}
+                className={projectsCSS.mainTechLogo}
+                alt={`Logo of ${name}`} />
+            ))}
+            {cardData.sideTech && cardData.sideTech.map((name, index) => (
+              <Image
+                key={cardData.name + index}
+                src={`/images/logos/${name}-logo.svg`}
                 width={512}
                 height={512}
                 className={projectsCSS.mainTechLogo}

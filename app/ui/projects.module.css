@@ -141,7 +141,6 @@
   aspect-ratio: 280 / 400;
   transition: top 2s ease, left 2s ease, transform 0.25s ease;
   perspective: 600px;
-  cursor: pointer;
 }
 
 .cardContainer:hover {
@@ -209,20 +208,20 @@
 }
 
 .cardFront > h1 {
-  font-size: max(12pt, 12cqw);
+  font-size: max(8pt, 10cqw);
   font-weight: light;
 }
 .cardFront > h1:first-of-type {
-  margin: 0 auto 0 5px;
+  margin: 0 auto 0 0.3em;
 }
 .cardFront > h1:last-of-type{
-  margin: 0 5px 0 auto;
+  margin: 0 0.3em 0 auto;
 }
 
 .cardFront > .mainTechGroup {
-  margin: 0.5rem 0;
+  margin: 0.2rem 0;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   align-items: center;
   justify-items: flex-start;
   flex-grow: 1;
@@ -235,12 +234,12 @@
 }
 
 .cardFront > .mainTechGroup span {
-  font-size: max(10pt, 10cqw);
+  font-size: max(10pt, 9cqw);
   font-weight: lighter;
 }
 
 .cardFront .mainTechLogo {
-  height: max(1rem, 14cqw);
+  height: max(1rem, 13cqw);
   width: auto;
   font-size: 6pt;
   margin-right: max(0.1rem, 3cqw);
@@ -253,12 +252,12 @@
   background: black;
 }
 .cardFront > .leftLine {
-  top: max(1.2em, 16cqw);
+  top: max(1em, 14cqw);
   left: 10%;
 }
 .cardFront > .rightLine {
-  bottom: max(1.2em, 16cqw);
-  right: calc(10%);
+  bottom: max(0.9em, 13cqw);
+  right: 10%;
 }
 
 .cardBack {
@@ -279,26 +278,31 @@
 }
 
 .cardBack > .cardHeader > h1 {
-  font-size: 10cqw;
+  font-size: 9.2cqw;
+  font-stretch: ultra-condensed;
   font-weight: light;
-  margin-right: auto;
+  margin: 0.1em auto 0.1em 0;
 }
 
-.cardBack > .cardHeader > img {
-  height: max(1rem, 9cqw);
+.cardBack > .cardHeader > a > img {
+  height: max(0.5em, 9cqw);
   width: auto;
   margin-right: max(0.1rem, 2cqw);
+  cursor: pointer;
 }
 
 .cardBack > .techGroup {
   margin: 1cqw 0;
-  width: 100%;
+  align-self: flex-end;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 0.6cqw rgba(0, 0, 0, 0.20) solid;
+  gap: 1.5cqw;
+  padding-left: 0.5cqw;
 }
 .cardBack > .techGroup > img {
-  margin-left: 1cqw;
   height: 8cqw;
   width: auto;
 }
@@ -307,6 +311,7 @@
   margin: 0 auto;
   width: calc(100%);
   height: 64cqw;
+  font-size: 4pt;
   border: 1cqw rgba(0, 0, 0, 0.20) solid;
 }
 

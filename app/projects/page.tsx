@@ -38,6 +38,7 @@ export default function Page() {
         desc: 'DubCards is a University of Washington themed trading card game featuring UW themed cards and packs. Cards can be bought, sold or favorited. Users can add friends to trade cards wish. Enjoy DubCards with many cards and packs to choose from!',
         mainTech: ['Express', 'HTML', 'MongoDB', 'Azure'],
         sideTech: ['CSS'],
+        link: '',
         dates: {
           start: new Date('2026-1-01'),
           end: null,
