@@ -179,7 +179,7 @@
 .cardContainerTilt, .cardFront, .cardBack {
   width: 100%;
   height: 100%;
-  border-radius: 0.75cqw;
+  border-radius: 0.3cqw;
 }
 
 .cardContainerTilt h1, .cardContainerTilt span, .cardContainerTilt img {
@@ -250,11 +250,11 @@
 }
 
 .cardBack {
-  padding: 0 0.6cqw;
+  padding: 0 0.2cqw;
 }
 
 .cardContainer.chosen .cardBack {
-  padding: 0.5cqw 1.5cqw 0 1.5cqw;
+  padding: 0cqw 0.7cqw 0 0.7cqw;
 }
 
 .cardBack > .cardHeader {

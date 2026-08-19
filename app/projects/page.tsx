@@ -17,13 +17,30 @@ import cardsData from '../lib/cards';
 
 export default function Page() {
   const [gameOn, setGameOn] = useState(false);
-  const [cards, setCards] = useState<CardType[]>([...cardsData]);
+  const [cards, setCards] = useState<CardType[]>(cardsData);
   const [chosenCard, setChosenCard] = useState<CardType | null>(null);
+  let initCards: number = cardsData.length;
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 80, rotate: -5 },
+    visible: (i: number) => ({
+      opacity: 1, y: 0, rotate: 0,
+      transition: {
+        opacity: { duration: 0.2, delay: i * 0.3 },
+        y: { type: "spring", stiffness: 100, damping: 20, delay: i * 0.3 },
+        rotate: { duration: 0.2, delay: i * 0.3 },
+      },
+    }),
+    exit: { opacity: 0, y: 40, rotate: 5 },
+  };
+
 
   useEffect(() => {
     if (!gameOn) document.body.style.backgroundColor = "#000000ce";
     if (gameOn) document.body.style.backgroundColor = "";
-    return () => { document.body.style.backgroundColor = ""; };
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
   }, [gameOn]);
 
   function drawCard() {
@@ -42,8 +59,9 @@ export default function Page() {
       };
     setCards([...cards, newCard]);
   }
+
   //<UserHeader username="Lance" />
-  return <>
+  return <> 
   <div className={clsx(projectsCSS.mainContent, { [projectsCSS.gameOn]: gameOn })}>
     <AnimatePresence mode="wait">
       {chosenCard && (
@@ -59,15 +77,31 @@ export default function Page() {
       )}
     </AnimatePresence>
     <Deck username="Lance" setGameOn={setGameOn} gameOn={gameOn} drawCard={drawCard} image={"/images/personal/nrt-ramen.gif"} />
-    <motion.div layout className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
+    {gameOn && <motion.div layout className={clsx(projectsCSS.handContainer, { [projectsCSS.gameOn]: gameOn })}>
       <AnimatePresence mode="popLayout">
-      {cards.map((item) =>
-          <motion.div layout key={item["id"]} initial={{ opacity: 0, y: 80, rotate: -5 }} animate={{ opacity: 1, y: 0, rotate: 0 }} exit={{ opacity: 0, y: 40, rotate: 5 }} transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.2 }}>
-            <Card key={item["id"]} cardData={item} setChosenCard={setChosenCard} chosenData={(chosenCard ? chosenCard : null)} setCards={setCards} />
+        {cards.map((item, i) => (
+          <motion.div
+            layout key={item.id}
+            initial={{ opacity: 0, y: 40, rotate: -5 }}
+            animate={{ opacity: 1, y: 0, rotate: 0 }}
+            exit={{ opacity: 0, y: 40, rotate: 5 }}
+            transition={{
+              layout: { type: "spring", stiffness: 100, damping: 20, },
+              opacity: { duration: 0.2, delay: (initCards > i ? i * 0.5 : 0), },
+              y: { type: "spring", stiffness: 100, damping: 20, delay: (initCards > i ? i * 0.5 : 0), },
+              rotate: { duration: 0.5, delay: (initCards > i ? i * 0.5 : 0), },
+            }}>
+            <Card
+              cardData={item}
+              setChosenCard={setChosenCard}
+              chosenData={chosenCard ?? null}
+              setCards={setCards}
+            />
           </motion.div>
-      )}
+        ))}
+
       </AnimatePresence>
-    </motion.div>
+    </motion.div> }
   </div>
   </>
 }
