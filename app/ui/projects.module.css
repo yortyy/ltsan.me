@@ -36,7 +36,6 @@
 :root {
   --card-height: 400px;
   --card-width: 280px;
-  --card-back-color: #152c38;
 }
 
 
@@ -45,14 +44,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 1rem;
-  background-color: var(--card-back-color);
-  height: var(--card-height);
+  container-type: inline-size;
   width: var(--card-width);
-  padding: 2rem 1rem;
-  box-shadow: 8px 8px rgb(0, 0, 0);
+  aspect-ratio: 280 / 400;
+  padding: 1rem;
+  box-shadow: 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 0.3cqw;
+  border: black 1px dashed;
+  background-color: var(--primary-color);
   position: absolute;
-  transition: transform 0.2s ease;
   z-index: 5;
   cursor: pointer;
   top: calc(50% - var(--card-height) / 2);
@@ -63,15 +63,14 @@
   transition:
     right 2s ease,
     top 2s ease,
-    transform 2s ease;
-  transform: scale(0.4);
-  transform-origin: top right;
+    width 2s ease,
+    height 2s ease,
+    padding 2s ease;
+  width: calc(var(--card-width) * 0.4);
+  padding: 0.5rem;
 
   top: 1rem;
-  right: calc(min(2cqw, 1rem) + 4px); /* 4px for box shadow */
-}
-.deckContainer.gameOn:hover {
-  transform: scale(calc(0.4 * 0.97));
+  right: calc(min(2cqw, 1rem) + 2px); /* 2px for box shadow */
 }
 
 .deckContainer:hover {
@@ -79,7 +78,15 @@
 }
 
 .deckContainer > h3 {
-  color: white;
+  position: absolute;
+  color: black;
+  margin: 0;
+  font-size: 15cqw;
+}
+
+.deckContainer > img {
+  margin: auto;
+  border: 1px solid black;
 }
 
 
@@ -95,9 +102,10 @@
 
 .handContainer {
   gap: 1rem;
-  top: 200px;
+  top: 11rem;
   left: 0;
   padding: 0 min(2cqw, 1rem);
+  margin: 2rem 0;
   opacity: 0;
   width: 100%;
   position: absolute;
@@ -164,7 +172,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  background: rgb(0 0 0 / 60%);
+  background: rgb(0 0 0 / 50%);
   z-index: 9;
   opacity: 0;
   pointer-events: none;
@@ -182,7 +190,7 @@
   border-radius: 0.3cqw;
 }
 
-.cardContainerTilt h1, .cardContainerTilt span, .cardContainerTilt img {
+.cardContainerTilt h1, .cardContainerTilt span, .cardContainerTilt img, .deckContainer {
   user-select: none;
 }
 
@@ -194,6 +202,10 @@
   align-items: center;
   container-type: inline-size;
   border: rgb(74, 74, 74) solid min(max(1.5px, 0.27cqw), 2px);
+}
+
+.chosen .cardFront, .chosen .cardBack {
+  border: rgb(74, 74, 74) solid 5px;
 }
 
 .cardFront > h1 {
@@ -250,11 +262,11 @@
 }
 
 .cardBack {
-  padding: 0 0.2cqw;
+  padding: 0 0.3cqw;
 }
 
 .cardContainer.chosen .cardBack {
-  padding: 0cqw 0.7cqw 0 0.7cqw;
+  padding: 0 0.9cqw;
 }
 
 .cardBack > .cardHeader {
@@ -312,7 +324,7 @@
 }
 
 .cardBack > .bottomTextDiv {
-  width: calc(100% + 3.2cqw);
+  width: calc(100% + 1cqw);
   height: 6cqw;
   margin-top: auto;
   display: flex;
@@ -324,11 +336,6 @@
 .cardContainer.chosen .cardBack .bottomTextDiv {
   margin-bottom: 0.4cqw;
 }
-
-
-.cardContainer .frontEnd { background-color: #E29191; }
-.cardContainer .backEnd { background-color: #91BEE2; }
-.cardContainer .fullStack { background-color: #919de2; }
 
 
 @media (max-width: 580px) {

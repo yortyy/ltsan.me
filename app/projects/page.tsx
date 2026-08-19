@@ -4,12 +4,11 @@ import projectsCSS from '@/app/ui/projects.module.css';
 import { AnimatePresence, motion } from "motion/react"
 
 
-import UserHeader from '@/app/projects/components/UserHeader';
 import Deck from '@/app/projects/components/Deck';
 import Card from '@/app/projects/components/Card';
 
 import clsx from 'clsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { Card as CardType } from '@/app/lib/definitions';
 import cardsData from '../lib/cards';
@@ -19,29 +18,16 @@ export default function Page() {
   const [gameOn, setGameOn] = useState(false);
   const [cards, setCards] = useState<CardType[]>(cardsData);
   const [chosenCard, setChosenCard] = useState<CardType | null>(null);
-  let initCards: number = cardsData.length;
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 80, rotate: -5 },
-    visible: (i: number) => ({
-      opacity: 1, y: 0, rotate: 0,
-      transition: {
-        opacity: { duration: 0.2, delay: i * 0.3 },
-        y: { type: "spring", stiffness: 100, damping: 20, delay: i * 0.3 },
-        rotate: { duration: 0.2, delay: i * 0.3 },
-      },
-    }),
-    exit: { opacity: 0, y: 40, rotate: 5 },
-  };
-
+  const prevCardCount = useRef(cards.length);
 
   useEffect(() => {
-    if (!gameOn) document.body.style.backgroundColor = "#000000ce";
-    if (gameOn) document.body.style.backgroundColor = "";
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
+    document.body.classList.toggle("bodyDim", !gameOn);
   }, [gameOn]);
+
+  useEffect(() => {
+    if (!chosenCard) document.body.style.backgroundColor = "";
+    prevCardCount.current = cards.length;
+  }, [cards.length]);
 
   function drawCard() {
     const newCard:CardType = {
@@ -60,7 +46,6 @@ export default function Page() {
     setCards([...cards, newCard]);
   }
 
-  //<UserHeader username="Lance" />
   return <> 
   <div className={clsx(projectsCSS.mainContent, { [projectsCSS.gameOn]: gameOn })}>
     <AnimatePresence mode="wait">
@@ -84,12 +69,12 @@ export default function Page() {
             layout key={item.id}
             initial={{ opacity: 0, y: 40, rotate: -5 }}
             animate={{ opacity: 1, y: 0, rotate: 0 }}
-            exit={{ opacity: 0, y: 40, rotate: 5 }}
+            exit={{ opacity: 0, y: 40, rotate: 5, transition: { delay: 0 } }}
             transition={{
               layout: { type: "spring", stiffness: 100, damping: 20, },
-              opacity: { duration: 0.2, delay: (initCards > i ? i * 0.5 : 0), },
-              y: { type: "spring", stiffness: 100, damping: 20, delay: (initCards > i ? i * 0.5 : 0), },
-              rotate: { duration: 0.5, delay: (initCards > i ? i * 0.5 : 0), },
+              opacity: { duration: 0.2, delay: (prevCardCount.current > i ? i * 0.5 : 0), },
+              y: { type: "spring", stiffness: 100, damping: 20, delay: (prevCardCount.current > i ? i * 0.5 : 0), },
+              rotate: { duration: 0.5, delay: (prevCardCount.current > i ? i * 0.5 : 0), },
             }}>
             <Card
               cardData={item}

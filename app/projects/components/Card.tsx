@@ -126,18 +126,13 @@ function TiltLayer({ setFlipped, children }: TiltLayerProps) {
 
 
 function CardFront({ cardData }: { cardData: CardType }) {
-  return <div className={clsx(projectsCSS.cardFront, {
-            [projectsCSS.frontEnd]: cardData.type === 'Front-end',
-            [projectsCSS.backEnd]: cardData.type === 'Back-end',
-            [projectsCSS.fullStack]: cardData.type === 'Full-stack',
-          })}>
-
+  return <div className={projectsCSS.cardFront} style={{ backgroundColor: cardData.colors[0] }}>
             <h1 className={figtree.className}>{cardData.type}</h1>
             <div className={projectsCSS.mainTechGroup}>
             {cardData.mainTech.map((name, index) => (
-              <div key={index} className={projectsCSS.mainTech}>
+              <div key={cardData.name + index} className={projectsCSS.mainTech}>
                 <Image
-                  src={`/images/logos/${name}-logo.png`}
+                  src={`/images/logos/${name.toLowerCase()}-logo.png`}
                   width={512}
                   height={512}
                   className={projectsCSS.mainTechLogo}
@@ -165,11 +160,7 @@ function CardBack({ cardData }: { cardData: CardType}) {
       )
     : 'Current';
 
-  return <div className={clsx(projectsCSS.cardBack, {
-            [projectsCSS.frontEnd]: cardData.type === 'Front-end',
-            [projectsCSS.backEnd]: cardData.type === 'Back-end',
-            [projectsCSS.fullStack]: cardData.type === 'Full-stack',
-          })}>
+  return <div className={projectsCSS.cardBack} style={{ backgroundColor: cardData.colors[0] }}>
             <div className={projectsCSS.cardHeader}>
               <h1 className={figtree.className}>{cardData.name}</h1>
               <Image
@@ -180,9 +171,10 @@ function CardBack({ cardData }: { cardData: CardType}) {
               />
             </div>
             <div className={projectsCSS.techGroup}>
-            {cardData.mainTech.map((name) => (
+            {cardData.mainTech.map((name, index) => (
               <Image
-                src={`/images/logos/${name}-logo.png`}
+                key={cardData.name + index}
+                src={`/images/logos/${name.toLowerCase()}-logo.png`}
                 width={512}
                 height={512}
                 className={projectsCSS.mainTechLogo}

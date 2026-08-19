@@ -1,10 +1,16 @@
 import { Card } from './definitions';
 
+const colors = {
+  fe: '#E29191',
+  be: '#91BEE2',
+  fs: '#919DE2',
+};
+
 const cards: Card[] = [
   {
     id: '1',
     type: 'Front-end',
-    colors: ['red'],
+    colors: [colors.fe],
     name: 'React App',
     desc: 'A project using React',
     mainTech: ['React'],
@@ -17,7 +23,7 @@ const cards: Card[] = [
   {
     id: '2',
     type: 'Back-end',
-    colors: ['blue'],
+    colors: [colors.be],
     name: 'Node API',
     desc: 'A project using Node.js',
     mainTech: ['Node.js'],
@@ -30,7 +36,7 @@ const cards: Card[] = [
   {
     id: '3',
     type: 'Full-stack',
-    colors: ['#57007F'],
+    colors: [colors.fs],
     name: 'DubCards',
     desc: 'DubCards is a University of Washington themed trading card game featuring UW themed cards and packs. Cards can be bought, sold or favorited. Users can add friends to trade cards wish. Enjoy DubCards with many cards and packs to choose from!',
     mainTech: ['Express', 'HTML', 'MongoDB', 'Azure'],
