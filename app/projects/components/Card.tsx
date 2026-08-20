@@ -69,7 +69,7 @@ export default function Card({cardData, chosenData, setChosenCard, setCards }: C
 
 
   return (
-    <div className={clsx(projectsCSS.cardContainer, {[projectsCSS.chosen]: chosen })} onClick={handleCardClick}>
+    <div className={clsx(projectsCSS.cardContainer, projectsCSS["rarity-" + cardData.rarity], {[projectsCSS.chosen]: chosen })} onClick={handleCardClick}>
       <TiltLayer setFlipped={setFlipped} clicked={clicked} cardData={cardData}>
         <ReactCardFlip 
           isFlipped={flipped}

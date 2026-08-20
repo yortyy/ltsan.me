@@ -33,6 +33,7 @@ export default function Page() {
     const newCard:CardType = {
         id: "" + cards.length + 1,
         type: 'Full-stack',
+        rarity: 2,
         colors: ['#57007F'],
         name: 'DubCards (Fake)',
         desc: 'DubCards is a University of Washington themed trading card game featuring UW themed cards and packs. Cards can be bought, sold or favorited. Users can add friends to trade cards wish. Enjoy DubCards with many cards and packs to choose from!',
