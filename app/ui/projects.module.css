@@ -141,6 +141,7 @@
   aspect-ratio: 280 / 400;
   transition: top 2s ease, left 2s ease, transform 0.25s ease;
   perspective: 600px;
+  cursor: pointer;
 }
 
 .cardContainer:hover {
@@ -165,6 +166,7 @@
 .cardContainer.chosen {
   max-width: none;
   pointer-events: auto;
+  cursor: auto;
 }
 
 .mainContent::after {
@@ -277,6 +279,14 @@
   border-bottom: solid black 0.5cqw;
 }
 
+.cardBack > .cardHeader > img {
+  height: 10cqw;
+  width: auto;
+  margin-right: 2cqw;
+  border: solid 0.5px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .cardBack > .cardHeader > h1 {
   font-size: 9.2cqw;
   font-stretch: ultra-condensed;
@@ -307,12 +317,14 @@
   width: auto;
 }
 
-.cardBack .projectScreenshot {
+.cardBack .scDiv {
   margin: 0 auto;
   width: calc(100%);
-  height: 64cqw;
+  height: 200cqw;
   font-size: 4pt;
   border: 1cqw rgba(0, 0, 0, 0.20) solid;
+  overflow: hidden;
+  object-fit: fill;
 }
 
 .cardBack > p {

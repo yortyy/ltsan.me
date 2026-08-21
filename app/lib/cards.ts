@@ -75,15 +75,30 @@ const cards: Card[] = [
     rarity: 4,
     colors: [colors.fs],
     name: 'BALLER//BROWSER',
-    desc: 'A web platform that lets users search and browse through real-time NBA player data and multi-season statistics.',
+    desc: 'A fantasy basketball marketplace and lineup builder where users can browse, search, and purchase NBA players to assemble custom rosters.',
     mainTech: ['Node.js', 'Express', 'JavaScript', 'SQL', 'R'],
     sideTech: ['HTML', 'CSS'],
-    link: 'https://yortyy.github.io/CSE154-Web-Creative-Projects/fp/public/index.html', 
+    link: 'https://baller-browser.onrender.com/', 
     dates: {
       start: new Date('2024-04-01'),
       end: new Date('2024-06-01'),
     },
   },
+  {
+    id: '6',
+    type: 'Full-stack',
+    rarity: 3,
+    colors: [colors.fs],
+    name: "LeBron's Legacy",
+    desc: "A browser-based game where you step into the role of LeBron James to save humanity from alien forces, taking crucial shots from anywhere on the court using his real-world shooting statistics.",
+    mainTech: ['Node.js', 'Express', 'JavaScript'],
+    sideTech: ['HTML', 'CSS'],
+    link: 'https://lebrons-legacy.onrender.com/',
+    dates: {
+      start: new Date('2024-06-01'),
+      end: new Date('2024-08-01'),
+    },
+  }
 ];
 
 export default cards;

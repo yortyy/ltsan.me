@@ -162,6 +162,13 @@ function CardBack({ cardData }: { cardData: CardType}) {
 
   return <div className={projectsCSS.cardBack} style={{ backgroundColor: cardData.colors[0] }}>
             <div className={projectsCSS.cardHeader}>
+              <Image
+                src={`/images/cards/${cardData.id}/logo.png`}
+                width={27}
+                height={27}
+                alt={`Logo ${cardData.name}`}
+                className={projectsCSS.logo}
+              />
               <h1 className={figtree.className}>{cardData.name}</h1>
               <a href={cardData.link} target="_blank" rel="noopener noreferrer">
                 <Image
@@ -192,13 +199,14 @@ function CardBack({ cardData }: { cardData: CardType}) {
                 alt={`Logo of ${name}`} />
             ))}
             </div>
-            <Image
-              src={`/images/cards/${cardData.id}/sc.png`}
-              width={512}
-              height={512}
-              className={projectsCSS.projectScreenshot}
-              alt={`Screenshot for ${cardData.name}`}
-            />
+            <div className={projectsCSS.scDiv}>
+              <Image
+                src={`/images/cards/${cardData.id}/sc.png`}
+                width={512}
+                height={512}
+                alt={`Screenshot for ${cardData.name}`}
+              />
+            </div>
             <p>{cardData.desc}</p>
             <div className={projectsCSS.bottomTextDiv}>
               <span className={figtree.className}>{cardData.type}</span>
